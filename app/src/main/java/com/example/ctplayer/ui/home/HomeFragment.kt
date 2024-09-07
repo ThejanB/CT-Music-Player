@@ -4,35 +4,39 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ctplayer.AudioAdapter
+import com.example.ctplayer.AudioManager
 import com.example.ctplayer.databinding.FragmentHomeBinding
+
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeAudioList()
+    }
+
+    private fun observeAudioList() {
+        AudioManager.currentAudio.observe(viewLifecycleOwner) { audioList ->
+            if (audioList == null || audioList.isEmpty()) {
+                binding.noMusicTextView.visibility = View.VISIBLE
+                binding.noMusicTextView.text = "Audio list not initialized or is empty"
+            } else {
+                binding.noMusicTextView.visibility = View.GONE
+                binding.songsRecycler.layoutManager = LinearLayoutManager(context)
+                binding.songsRecycler.adapter = AudioAdapter(audioList)
+            }
         }
-        return root
     }
 
     override fun onDestroyView() {

@@ -29,12 +29,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupAudioData {
+            setupNavigation()
+        }
+    }
+
+    private fun setupAudioData(onComplete: () -> Unit) {
         if (!checkPermission()) {
             requestPermission()
         }
-        Log.d("MainActivity.kt DataRetrieval", "Checking for permission.")
-
-        // Querying the media store to fetch music files
         val cursor: Cursor? = readMusicFiles()
         cursor?.use {
             while (it.moveToNext()) {
@@ -71,19 +74,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        Log.d("MainActivity.kt DataRetrieval", "Found ${songsList.size} songs.")
         AudioManager.setAudioList(songsList)
+        onComplete()
+    }
 
+    private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_profile
-            )
-        )
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_profile
+        ))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

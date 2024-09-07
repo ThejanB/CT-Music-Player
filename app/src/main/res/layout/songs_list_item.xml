@@ -1,39 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable name="song" type="com.example.ctplayer.AudioModel"/>
-    </data>
-    <androidx.cardview.widget.CardView
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:background="#787878"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp">
+
+    <!-- ImageView positioned on the left inside the CardView -->
+    <ImageView
+        android:id="@+id/songsListCardImage"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/songImage"
+        android:src="@drawable/baseline_person_24"
+        android:layout_alignParentStart="true"/>
+
+    <!-- LinearLayout positioned to the right of the ImageView -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:orientation="vertical"
+        android:layout_toEndOf="@id/songsListCardImage"
+        android:layout_centerVertical="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/songsListCardSongName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:textColor="@color/white"
+            android:text="Song Name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
-            <TextView
-                android:id="@+id/songsListCardSongName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="{song.displayName}"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/songsListCardArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Artist Name"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
-            <TextView
-                android:id="@+id/songsListCardArtist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="{song.artist}" />
+        <TextView
+            android:id="@+id/songsListCardDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="3:30"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
 
-            <TextView
-                android:id="@+id/songsListCardDuration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="{song.duration}" />
+    </LinearLayout>
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</layout>
+</RelativeLayout>

@@ -1,32 +1,17 @@
 package com.example.ctplayer
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 object AudioManager {
-    private var currentAudio: ArrayList<AudioModel>? = null
-    private var currentAudioIndex = -1
+    private val _currentAudio: MutableLiveData<List<AudioModel>> = MutableLiveData()
+    val currentAudio: LiveData<List<AudioModel>> get() = _currentAudio
 
-    fun setAudioList(audio: ArrayList<AudioModel>) {
-        currentAudio = audio
-        Log.d("AudioManager.kt DataRetrieval", "Audio list set. ${audio.size}")
-        Log.d("AudioManager.kt DataRetrieval", "Audio list set 2. ${currentAudio!!.size}")
+    fun setAudioList(audio: List<AudioModel>) {
+        _currentAudio.postValue(audio)
     }
 
-    fun getAudioList(): ArrayList<AudioModel>? {
-        Log.d("AudioManager.kt DataRetrieval", "Audio list retrieved. ${currentAudio?.size}")
-        return currentAudio
+    fun getCurrentAudioList(): List<AudioModel>? {
+        return _currentAudio.value
     }
-
-    fun setCurrentAudioIndex(index: Int) {
-        currentAudioIndex = index
-    }
-
-    fun getCurrentAudio(): AudioModel? {
-        return if (currentAudioIndex != -1) {
-            currentAudio?.get(currentAudioIndex)
-        } else {
-            null
-        }
-    }
-
 }

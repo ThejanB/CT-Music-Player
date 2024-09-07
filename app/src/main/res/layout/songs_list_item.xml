@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="song" type="com.example.ctplayer.AudioModel"/>
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/songsListCardSongName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="{song.displayName}"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/songsListCardArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="{song.artist}" />
+
+            <TextView
+                android:id="@+id/songsListCardDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="{song.duration}" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

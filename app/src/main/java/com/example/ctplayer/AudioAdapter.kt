@@ -30,6 +30,7 @@ class AudioAdapter(private val audioList: List<AudioModel>) : RecyclerView.Adapt
         fun bind(audio: AudioModel) {
             songName.text = audio.displayName
             artistName.text = audio.artist
+            // [TODO - currently duration is shown in milliseconds, convert it to minutes and seconds]
             songDuration.text = audio.duration
             // [TODO] - Set an image if have image data or use a placeholder / Default image
             songImage.setImageResource(R.drawable.baseline_person_24)  // [TODO] - Replace with actual image handling logic

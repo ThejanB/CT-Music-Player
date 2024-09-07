@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ctplayer.AudioAdapter
 import com.example.ctplayer.AudioManager
+import com.example.ctplayer.R
 import com.example.ctplayer.databinding.FragmentHomeBinding
 
 
@@ -27,10 +28,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeAudioList() {
-        AudioManager.currentAudio.observe(viewLifecycleOwner) { audioList ->
+        AudioManager.currentAudioList.observe(viewLifecycleOwner) { audioList ->
             if (audioList == null || audioList.isEmpty()) {
                 binding.noMusicTextView.visibility = View.VISIBLE
-                binding.noMusicTextView.text = "Audio list not initialized or is empty"
+                binding.noMusicTextView.text = getString(R.string.no_songs_found)
+
             } else {
                 binding.noMusicTextView.visibility = View.GONE
                 binding.songsRecycler.layoutManager = LinearLayoutManager(context)

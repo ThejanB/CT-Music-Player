@@ -1,11 +1,13 @@
 package com.example.ctplayer
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ctplayer.ui.audioCard.AudioCard
 
 class AudioAdapter(private val audioList: List<AudioModel>) : RecyclerView.Adapter<AudioAdapter.AudioViewHolder>() {
 
@@ -17,6 +19,20 @@ class AudioAdapter(private val audioList: List<AudioModel>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: AudioViewHolder, position: Int) {
         val audio = audioList[position]
         holder.bind(audio)
+
+        holder.itemView.setOnClickListener {
+            // Set the current audio in AudioManager
+            AudioManager.setCurrentAudio(audio)
+
+            // navigate to the AudioCard
+            val context = holder.itemView.context
+            val intent = Intent(context, AudioCard::class.java).apply {
+                putExtra("AUDIO_ID", audio.id)
+            }
+            context.startActivity(intent)
+
+
+        }
     }
 
     override fun getItemCount(): Int = audioList.size

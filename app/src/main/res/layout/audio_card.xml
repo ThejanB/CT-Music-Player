@@ -11,13 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/song_name"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#470852"
         android:maxLines="1"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="0dp"
         android:layout_centerHorizontal="true"
         android:ellipsize="marquee" />
 
@@ -58,7 +57,7 @@
             android:backgroundTint="@color/white"/>
 
         <TextView
-            android:id="@+id/audioCardCurrentDuration"
+            android:id="@+id/audioCardCurrentTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0.0"
@@ -66,7 +65,7 @@
             android:layout_below="@id/audioCardSeekBar"/>
 
         <TextView
-            android:id="@+id/audioCardTotalDuration"
+            android:id="@+id/audioCardTimeLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0.0"

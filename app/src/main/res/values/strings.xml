@@ -6,7 +6,6 @@
     <string name="all_songs">All Songs</string>
     <string name="no_songs_found">No songs found</string>
     <string name="permission_required_toast">Permission is required to access media files. Allow permission in settings to use the music player.</string>
-    <string name="songImage">Song Image</string>
     <string name="song_name">Song Name</string>
-    <string name="audio_card_image">Audio card image</string>
+    <string name="initial_time_0_00">0:00</string>
 </resources>

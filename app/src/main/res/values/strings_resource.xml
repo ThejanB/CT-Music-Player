@@ -1,0 +1,7 @@
+<resources>
+    <string name="play_pause_button">Play/Pause Button</string>
+    <string name="next_button">Next Button</string>
+    <string name="previous_button">Previous Button</string>
+    <string name="audio_card_image">Audio card image</string>
+    <string name="songImage">Song Image</string>
+</resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CTPlayer</string>
+    <string name="app_name">CT Player</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_profile">Profile</string>
@@ -7,4 +7,6 @@
     <string name="no_songs_found">No songs found</string>
     <string name="permission_required_toast">Permission is required to access media files. Allow permission in settings to use the music player.</string>
     <string name="songImage">Song Image</string>
+    <string name="song_name">Song Name</string>
+    <string name="audio_card_image">Audio card image</string>
 </resources>

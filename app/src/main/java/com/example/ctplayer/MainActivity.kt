@@ -66,11 +66,9 @@ class MainActivity : AppCompatActivity() {
 
                     if (File(audioModel.data).exists()) {
                         songsList.add(audioModel)
-                        Log.d("MainActivity.kt DataRetrieval", "Found song: ${audioModel.displayName}")
                     }
                 } else {
-                    // Log or handle the case where one or more required columns are not found
-                    Log.e("MainActivity.kt DataRetrieval", "Required columns not found in the cursor.")
+                    Log.e("DataRetrieval", "Required columns not found in the cursor.")
                 }
             }
         }
@@ -81,8 +79,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_profile
         ))

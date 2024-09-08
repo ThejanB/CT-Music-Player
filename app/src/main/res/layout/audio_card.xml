@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/purple_200"
+    tools:context=".ui.audioCard.audioCard">
+
+    <TextView
+        android:id="@+id/audioCardSongName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/song_name"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#470852"
+        android:maxLines="1"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="marquee" />
+
+    <TextView
+        android:id="@+id/audioCardArtistName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Artist name"
+        android:textSize="20sp"
+        android:textColor="#470852"
+        android:maxLines="1"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/audioCardSongName"
+        android:ellipsize="marquee" />
+
+    <ImageView
+        android:id="@+id/audioCardImage"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_below="@id/audioCardArtistName"
+        android:layout_above="@id/audioCardDuration"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/audio_card_image"
+        android:src="@drawable/music_notes_symbol"
+        android:padding="30dp" />
+
+    <RelativeLayout
+        android:id="@+id/audioCardDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/audioCardControlButtons"
+        android:padding="20dp">
+
+        <SeekBar
+            android:id="@+id/audioCardSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"/>
+
+        <TextView
+            android:id="@+id/audioCardCurrentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            android:textSize="20sp"
+            android:layout_below="@id/audioCardSeekBar"/>
+
+        <TextView
+            android:id="@+id/audioCardTimeLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/audioCardSeekBar"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/audioCardControlButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp">
+
+        <ImageButton
+            android:id="@+id/audioCardPreviousButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Previous Button"
+            android:src="@drawable/baseline_skip_previous_24" />
+
+        <ImageButton
+            android:id="@+id/audioCardPlayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Play Button"
+            android:src="@drawable/baseline_play_circle_outline_24" />
+
+        <ImageButton
+            android:id="@+id/audioCardNextButton"
+            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Next Button"
+            android:src="@drawable/baseline_skip_next_24" />
+    </RelativeLayout>
+
+</RelativeLayout>

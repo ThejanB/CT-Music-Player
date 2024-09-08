@@ -67,13 +67,11 @@ class AudioCard : AppCompatActivity() {
         }
 
         previousButton.setOnClickListener {
-            // Navigate to the previous song
-            // You might need to calculate the index or manage a playlist
+            AudioManager.previousAudio()
         }
 
         nextButton.setOnClickListener {
-            // Navigate to the next song
-            // You might need to calculate the index or manage a playlist
+            AudioManager.nextAudio()
         }
 
     }

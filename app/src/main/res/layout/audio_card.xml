@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/purple_200"
+    tools:context=".ui.audioCard.audioCard">
+
+    <TextView
+        android:id="@+id/audioCardSongName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/song_name"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#470852"
+        android:maxLines="1"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="marquee" />
+
+    <ImageView
+        android:id="@+id/audioCardImage"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_below="@id/audioCardSongName"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/music_notes_symbol"
+        android:padding="30dp" />
+
+
+
+
+
+
+</RelativeLayout>

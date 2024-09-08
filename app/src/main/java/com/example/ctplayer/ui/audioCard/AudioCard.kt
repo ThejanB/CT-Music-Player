@@ -23,6 +23,7 @@ class AudioCard : AppCompatActivity() {
     private lateinit var playButton: ImageButton
     private lateinit var nextButton: ImageButton
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.audio_card)
@@ -30,6 +31,7 @@ class AudioCard : AppCompatActivity() {
         initViews()
         observeCurrentAudio()
         setupControls()
+        AudioManager.setupMediaPlayer(AudioManager.currentAudio.value!!)
     }
 
     private fun initViews() {
@@ -55,25 +57,40 @@ class AudioCard : AppCompatActivity() {
     private fun updateUI(audio: AudioModel) {
         songNameTextView.text = audio.displayName
         artistNameTextView.text = audio.artist
-        currentTimeTextView.text = "0:00"               // [ToDO] update and show current time
+        currentTimeTextView.text = getString(R.string.initial_time_0_00)               // [ToDO] update and show current time
         timeLeftTextView.text = convertTime(audio.duration.toLong())    // [ToDO] update and show time left
-        // imageView.setImageDrawable(...) // Set your image if applicable
         // Update your seekbar and timers here
     }
 
     private fun setupControls() {
-        playButton.setOnClickListener {
-            // Handle play/pause logic
-        }
-
         previousButton.setOnClickListener {
-            AudioManager.previousAudio()
+            AudioManager.getPreviousAudio()?.let {
+                updateUI(it)
+                AudioManager.setupMediaPlayer(it)
+                playButton.setImageResource(R.drawable.baseline_pause_circle_outline_24)
+            }
         }
 
         nextButton.setOnClickListener {
-            AudioManager.nextAudio()
+            AudioManager.getNextAudio()?.let {
+                updateUI(it)
+                AudioManager.setupMediaPlayer(it)
+                playButton.setImageResource(R.drawable.baseline_pause_circle_outline_24)
+            }
         }
 
+        playButton.setOnClickListener {
+            AudioManager.mediaPlayer?.let {
+                if (AudioManager.isPlaying) {
+                    it.pause()
+                    playButton.setImageResource(R.drawable.baseline_play_circle_outline_24)
+                } else {
+                    it.start()
+                    playButton.setImageResource(R.drawable.baseline_pause_circle_outline_24)
+                }
+                AudioManager.isPlaying = !AudioManager.isPlaying
+            }
+        }
     }
 
     private fun convertTime(duration: Long): String {
@@ -81,4 +98,5 @@ class AudioCard : AppCompatActivity() {
         val seconds = duration / 1000 % 60
         return "$minutes:$seconds"
     }
+
 }

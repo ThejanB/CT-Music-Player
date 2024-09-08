@@ -8,10 +8,6 @@ object AudioManager {
     private val _currentAudioList: MutableLiveData<List<AudioModel>> = MutableLiveData()
     val currentAudioList: LiveData<List<AudioModel>> get() = _currentAudioList
 
-    // Live data for the currently playing audio
-    private val _currentAudio: MutableLiveData<AudioModel?> = MutableLiveData()
-    val currentAudio: LiveData<AudioModel?> get() = _currentAudio
-
     // Set the audio list
     fun setAudioList(audioList: List<AudioModel>) {
         _currentAudioList.postValue(audioList)
@@ -21,6 +17,10 @@ object AudioManager {
     fun getCurrentAudioList(): List<AudioModel>? {
         return _currentAudioList.value
     }
+
+    // Live data for the currently playing audio
+    private val _currentAudio: MutableLiveData<AudioModel?> = MutableLiveData()
+    val currentAudio: LiveData<AudioModel?> get() = _currentAudio
 
     // Set the current audio by reference
     fun setCurrentAudio(audio: AudioModel) {

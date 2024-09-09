@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.ctplayer.AudioManager
 import com.example.ctplayer.AudioModel
+import com.example.ctplayer.CommonHelperService
 import com.example.ctplayer.R
 
 class AudioCard : AppCompatActivity() {
@@ -58,7 +59,7 @@ class AudioCard : AppCompatActivity() {
         songNameTextView.text = audio.displayName
         artistNameTextView.text = audio.artist
         currentTimeTextView.text = getString(R.string.initial_time_0_00)               // [ToDO] update and show current time
-        timeLeftTextView.text = convertTime(audio.duration.toLong())    // [ToDO] update and show time left
+        timeLeftTextView.text = CommonHelperService.convertTimeHHMMSS(audio.duration.toLong())    // [ToDO] update and show time left
         // Update your seekbar and timers here
     }
 
@@ -91,12 +92,6 @@ class AudioCard : AppCompatActivity() {
                 AudioManager.isPlaying = !AudioManager.isPlaying
             }
         }
-    }
-
-    private fun convertTime(duration: Long): String {
-        val minutes = duration / 1000 / 60
-        val seconds = duration / 1000 % 60
-        return "$minutes:$seconds"
     }
 
 }
